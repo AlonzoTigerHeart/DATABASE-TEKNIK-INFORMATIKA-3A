@@ -200,6 +200,8 @@ Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian prod
 ---
 
 ## 8. Tabel Brand
+*(Ditambahkan oleh Juniar Viki Mahasa)*
+
 ### Deskripsi
 Tabel Brand merupakan tabel master yang digunakan untuk menyimpan informasi merek atau produsen produk dalam sistem, seperti identitas brand, logo, dan negara asal. Tabel ini berfungsi sebagai acuan bagi tabel Product sehingga setiap produk dapat dikaitkan dengan brand tertentu, mendukung pengelolaan data yang terstruktur, konsisten, serta memudahkan proses pencarian, pelaporan, dan analisis produk berdasarkan brand.
 
@@ -586,6 +588,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
