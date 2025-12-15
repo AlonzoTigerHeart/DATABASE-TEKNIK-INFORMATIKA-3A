@@ -225,11 +225,11 @@ Tabel Brand berfungsi untuk menyimpan dan mengelola data merek produk sebagai da
 ### Catatan Normalisasi
 Tabel Brand telah memenuhi prinsip normalisasi hingga Third Normal Form (3NF). Pada First Normal Form (1NF), seluruh atribut bersifat atomik dan tidak terdapat data berulang dalam satu kolom. Pada Second Normal Form (2NF), seluruh atribut non-kunci bergantung sepenuhnya pada primary key (Brand_Id) karena tabel tidak memiliki kunci gabungan. Selanjutnya, pada Third Normal Form (3NF), tidak terdapat ketergantungan transitif antar atribut non-kunci, karena setiap atribut hanya menjelaskan entitas Brand dan tidak bergantung pada atribut non-kunci lainnya. Dengan demikian, tabel Brand sudah terstruktur dengan baik, efisien, dan siap diintegrasikan dengan tabel lain seperti Product.
 
-### 4. ERD (Entity Relationship Diagram)
+###ERD (Entity Relationship Diagram)
 
 ```ERD
 +--------------------+      1        N     +--------------------+
-|       BRAND        |-------------------->|    Product         |
+|       BRAND        |-------------------->|      Product       |
 +--------------------+                     +--------------------+
 | Brand_Id (PK)      |                     | Product_Id (PK)    |
 | Brand_Name (FK)    |                     | Brand_Id (FK)      |
@@ -238,7 +238,7 @@ Tabel Brand telah memenuhi prinsip normalisasi hingga Third Normal Form (3NF). P
 +--------------------+                     | Deskripsi          |
                                            | Status             |
                                            +--------------------+
-                                          
+,,,
 
 ## 9.
 
@@ -586,6 +586,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
