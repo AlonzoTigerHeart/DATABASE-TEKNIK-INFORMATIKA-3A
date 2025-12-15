@@ -251,9 +251,31 @@ Tabel Inventory dirancang sebagai entitas mandiri untuk mengelola data stok seca
 
 ---
 
-## 8.
+## 8. Tabel Brand
+### Deskripsi
+Tabel Brand merupakan tabel master yang digunakan untuk menyimpan informasi merek atau produsen produk dalam sistem, seperti identitas brand, logo, dan negara asal. Tabel ini berfungsi sebagai acuan bagi tabel Product sehingga setiap produk dapat dikaitkan dengan brand tertentu, mendukung pengelolaan data yang terstruktur, konsisten, serta memudahkan proses pencarian, pelaporan, dan analisis produk berdasarkan brand.
 
----
+### Atribut
+- `Brand_Id`         : Primary Key, identitas unik brand
+- `Brand_Name`       : Nama resmi brand
+- `Logi_Url`         : Lokasi file logo brand
+- `Origin_Country`   : Negara asal brand
+
+### Relasi
+- **brand – product** (1 : N)
+  Satu Brand dapat memiliki banyak Product dan Satu Product hanya berasal dari satu Brand
+  
+- **brand – partner company** (1 : N) (opsional, tergantung implementasi)
+  Satu Brand dapat terdaftar sebagai Partner Company bertipe Brand
+
+- **brand – promo** (1 : N) atau (M : N)
+  Satu Brand dapat memiliki banyak Promo dan Satu Promo bisa berlaku untuk: Satu Brand saja → 1:N atau Banyak Brand → M:N (dengan tabel penghubung Promo_Brand)
+
+### Fungsi
+Tabel Brand berfungsi untuk menyimpan dan mengelola data merek produk sebagai data induk (master data) dalam sistem. Tabel ini digunakan untuk mengelompokkan produk berdasarkan brand, menjaga konsistensi informasi merek, mencegah duplikasi data pada tabel produk, serta mendukung proses pencarian, pelaporan, dan analisis performa produk berdasarkan brand.
+
+### Catatan Normalisasi
+Tabel Brand telah memenuhi prinsip normalisasi hingga Third Normal Form (3NF). Pada First Normal Form (1NF), seluruh atribut bersifat atomik dan tidak terdapat data berulang dalam satu kolom. Pada Second Normal Form (2NF), seluruh atribut non-kunci bergantung sepenuhnya pada primary key (Brand_Id) karena tabel tidak memiliki kunci gabungan. Selanjutnya, pada Third Normal Form (3NF), tidak terdapat ketergantungan transitif antar atribut non-kunci, karena setiap atribut hanya menjelaskan entitas Brand dan tidak bergantung pada atribut non-kunci lainnya. Dengan demikian, tabel Brand sudah terstruktur dengan baik, efisien, dan siap diintegrasikan dengan tabel lain seperti Product.
 
 ## 9.
 
@@ -331,6 +353,8 @@ Tabel ini tidak menyimpan data pengguna maupun periode langganan user, melainkan
 - **status**  
   Menentukan apakah paket masih tersedia atau tidak.
 
+---
+
 ### 5. Relasi Tabel Subscription
 
 **Relasi dengan Tabel User_Subscription**
@@ -397,6 +421,8 @@ Desain ini memenuhi prinsip normalisasi hingga **Third Normal Form (3NF)** serta
 
 ---
 
+## Relasi Antar Tabel
+
 ## 11. Tabel Keranjang Sementara
 *(Ditambahkan oleh Moh Ilham Dwinanto)*
 
@@ -441,6 +467,7 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 
 ---
 
+## 12.
 ## 12. Tabel Item Keranjang Sementara
 *(Ditambahkan oleh Nicko Ikhwan Prayogi)*
 
@@ -502,6 +529,8 @@ Digunakan untuk menyimpan data produk yang dipilih oleh user yang kemudian disim
 ### Deskripsi
 Tabel `Pesanan` adalah tabel transaksional utama yang mencatat setiap pembelian yang berhasil dibuat oleh pengguna. Tabel ini mengintegrasikan data dari User, Alamat Pengiriman, dan Metode Pembayaran serta menjadi induk bagi Item Pesanan.
 
+---
+
 ### Atribut  
 Tabel `Pesanan` memiliki atribut sebagai berikut:
 Nama Atribut,Keterangan,Kunci
@@ -516,6 +545,8 @@ Nama Atribut,Keterangan,Kunci
 - `biaya_pengiriman`,Biaya pengiriman yang dikenakan.
 - `tracking_number`,Nomor resi pelacakan dari jasa pengiriman.
 - `created_at`,Waktu pencatatan pesanan dalam sistem.
+
+---
 
 ### Relasi  
 Tabel `Pesanan` memiliki relasi dengan beberapa tabel lain, yaitu:
@@ -544,11 +575,15 @@ Tabel `Pesanan` memiliki relasi dengan beberapa tabel lain, yaitu:
 - **pesanan – return** (1 : N)
   Satu pesanan dapat memiliki banyak pengajuan return (melalui Item Pesanan).
 
+---
+
 ### Fungsi  
 Tabel `Pesanan` berfungsi sebagai: 
 1. Perekam Transaksi Utama: Mencatat detail dan riwayat setiap transaksi pembelian.
 2. Manajemen Status: Mengelola dan memperbarui Status pesanan dari awal hingga selesai.
 3. Integrator Data: Menghubungkan semua data master (User, Alamat, Pembayaran) dengan data item produk yang dibeli.
+
+---
 
 ### Catatan Normalisasi  
 Tabel ini dirancang untuk memenuhi Third Normal Form (3NF), di mana semua atribut non-key secara langsung bergantung pada Kunci Utama `order_id`, tanpa adanya ketergantungan transitif.
