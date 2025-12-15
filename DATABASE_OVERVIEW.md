@@ -238,7 +238,7 @@ Tabel Brand telah memenuhi prinsip normalisasi hingga Third Normal Form (3NF). P
 +--------------------+                     | Deskripsi          |
                                            | Status             |
                                            +--------------------+
-,,,
+```
 
 ## 9.
 
@@ -586,6 +586,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
